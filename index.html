@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stimulus Alert</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/monokai.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script type="module" defer>
+      import { Application } from 'stimulus'
+      import AlertController from './src/index.js'
+
+      const application = Application.start()
+      application.register('alert', AlertController)
+    </script>
+</head>
+<body>
+    <div class="container mx-auto">
+        <div class="mt-28 text-center mb-20">
+            <span class="text-6xl font-bold">
+                Stimulus
+                <span class="text-blue-400 hover:text-blue-500">
+                    Alert
+                </span>
+            </span>
+            <div class="text-gray-700">
+                A Stimulus Controller for a simple alert
+            </div>
+            <div class="flex justify-center  mt-8">
+                <a href="">
+                    <div class="bg-blue-400 w-min px-6 py-3 rounded text-xl text-white cursor-pointer mx-3 hover:bg-blue-500">
+                        Github
+                    </div>
+                </a>
+                <div class="flex justify-around border-2 border-blue-200 w-80 px-6 py-3 rounded text-xl mx-3 text-gray-700 cursor-pointer hover:bg-blue-100 " onclick="copyToClipboard(this)">
+                    npm install stimulus-alert
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 16c0 1.886 0 2.828.586 3.414C9.172 20 10.114 20 12 20h4c1.886 0 2.828 0 3.414-.586C20 18.828 20 17.886 20 16v-4c0-1.886 0-2.828-.586-3.414C18.828 8 17.886 8 16 8m-8 8h4c1.886 0 2.828 0 3.414-.586C16 14.828 16 13.886 16 12V8m-8 8c-1.886 0-2.828 0-3.414-.586C4 14.828 4 13.886 4 12V8c0-1.886 0-2.828.586-3.414C5.172 4 6.114 4 8 4h4c1.886 0 2.828 0 3.414.586C16 5.172 16 6.114 16 8"></path></svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-3">
+            <div class="col-span-1 p-10">
+                <div class="relative bg-yellow-100 text-white w-96 rounded-md p-4 hover:bg-yellow-200"
+                     data-controller="alert"
+                     data-alert-hidden-class-value="hidden">
+                    <span class="absolute text-yellow-900 font-bold top-1 right-3 cursor-pointer" data-action="click->alert#close">&times;</span>
+                    <div class="italic text-yellow-800">
+                        Hello, Stimulus!
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-2">
+                <pre>
+                    <code class="html">
+    &lt;div class=&quot;relative bg-yellow-100 text-white w-96 rounded-md p-4 hover:bg-yellow-200&quot;
+         data-controller=&quot;alert&quot;
+         data-alert-hidden-class-value=&quot;hidden&quot;&gt;
+        &lt;span class=&quot;absolute text-yellow-900 font-bold top-1 right-3 cursor-pointer&quot; data-action=&quot;click-&gt;alert#close&quot;&gt;&times;&lt;/span&gt;
+        &lt;div class=&quot;italic text-yellow-800&quot;&gt;
+            Hello, Stimulus!
+        &lt;/div&gt;
+    &lt;/div&gt;
+                    </code>
+                </pre>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-3">
+            <div class="col-span-1 p-10">
+                <div class="relative bg-red-100 text-white w-96 rounded p-4 hover:bg-red-200"
+                     data-controller="alert"
+                     data-alert-hidden-class-value="hidden"
+                     data-alert-time-value="20000">
+                    <span class="absolute text-red-900 font-bold top-1 right-3 cursor-pointer" data-action="click->alert#close">&times;</span>
+                    <div class="font-bold text-2xl text-red-900">
+                        Hello, Stimulus!
+                    </div>
+                    <div class="italic text-red-800">
+                        And this alert is only visible for the first 20 seconds
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-2">
+                <pre>
+                    <code class="html">
+    &lt;div class=&quot;relative bg-red-100 text-white w-96 rounded p-4 hover:bg-red-200&quot;
+         data-controller=&quot;alert&quot;
+         data-alert-hidden-class-value=&quot;hidden&quot;
+         data-alert-time-value=&quot;20000&quot;&gt;
+        &lt;span class=&quot;absolute text-red-900 font-bold top-1 right-3 cursor-pointer&quot; data-action=&quot;click-&gt;alert#close&quot;&gt;&times;&lt;/span&gt;
+        &lt;div class=&quot;font-bold text-2xl text-red-900&quot;&gt;
+            Hello, Stimulus!
+        &lt;/div&gt;
+        &lt;div class=&quot;italic text-red-800&quot;&gt;
+            And this alert is only visible for the first 20 seconds
+        &lt;/div&gt;
+    &lt;/div&gt;
+                    </code>
+                </pre>
+            </div>
+
+            <div class="col-span-3 text-gray-400 text-right">
+                For these examples I used
+                <a href="https://www.tailwindcss.com" class="text-blue-500" target="_blank">
+                    tailwind
+                </a>
+                but you can use the styles that you want.
+            </div>
+        </div>
+
+        <div class="flex flex-col w-10/12 mx-auto">
+            <div class="text-3xl font-bold">
+                Installation
+            </div>
+
+            <pre>
+                <code class="bash">
+    npm install stimulus-alert
+    // or
+    yarn add stimulus-alert
+                </code>
+            </pre>
+
+            <p>
+                Add the controller in your project
+            </p>
+
+            <pre>
+                <code class="javascript">
+    import { Application } from 'stimulus'
+    import AlertController from 'stimulus-alert'
+
+    const application = Application.start()
+    application.register('alert', AlertController)
+                </code>
+            </pre>
+
+            <div class="text-3xl font-bold">
+                Usage
+            </div>
+
+            <p>
+                Create a new element in you HTML with the controller
+                <span class="text-blue-500 font-bold">
+                    alert
+                </span>
+                and set
+                <span class="text-blue-500 font-bold">
+                    data-alert-hidden-class-value
+                </span>
+                .
+            </p>
+            <p>
+                <span class="text-blue-500 font-bold">
+                    data-alert-time-value
+                </span>
+               is optional.
+            </p>
+
+            <pre>
+                    <code class="html">
+    &lt;div data-controller=&quot;alert&quot; data-alert-hidden-class-value=&quot;hidden&quot;&gt;
+        &lt;span data-action=&quot;click-&gt;alert#close&quot;&gt;&times;&lt;/span&gt;
+        Hello, Stimulus!
+    &lt;/div&gt;
+                    </code>
+                </pre>
+
+            <div class="text-3xl font-bold">
+                Extending
+            </div>
+
+            <pre>
+                <code class="javascript">
+    import AlertController from 'stimulus-alert'
+
+    export default class extends AlertController {
+      close() {
+        super.close()
+        // your code
+      }
+
+      timer() {
+        super.timer()
+        // your code
+      }
+    }
+                </code>
+            </pre>
+        </div>
+
+        <div class="flex justify-center">
+            <div class="text-center text-gray-900">
+                This project is released under the
+                <a href="https://opensource.org/licenses/MIT" target="_blank" class="text-gray-400 hover:text-gray-800">
+                    MIT
+                </a>
+                license.
+            </div>
+        </div>
+
+        <div class="flex justify-center space-x-6 my-8">
+            <a href="https://twitter.com/developerafan" target="_blank"  class="text-gray-400 hover:text-gray-500">
+                <span class="sr-only">Twitter</span>
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+                </svg>
+            </a>
+
+            <a href="https://github.com/perafan18/stimulus-alert" target="_blank" class="text-gray-400 hover:text-gray-500">
+                <span class="sr-only">GitHub</span>
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+    <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+    <script>
+      function copyToClipboard(element) {
+        let range = document.createRange()
+        range.selectNode(element)
+        window.getSelection().removeAllRanges()
+        window.getSelection().addRange(range)
+        document.execCommand('copy')
+        window.getSelection().removeAllRanges()
+        createToast()
+      }
+
+      function createToast() {
+        let toast = document.createElement('div')
+        toast.classList.add('fixed', 'w-60','bg-blue-100', 'top-40', 'left-36', 'p-3', 'text-gray-500', 'rounded-2xl')
+        toast.dataset.controller = 'alert'
+        toast.dataset.alertHiddenClassValue = 'hidden'
+        toast.dataset.alertTimeValue = '1000'
+        toast.innerText = 'Copied!'
+
+        document.body.appendChild(toast)
+      }
+    </script>
+</body>
+</html>
