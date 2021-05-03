@@ -1,6 +1,6 @@
 {
   "name": "stimulus-alert",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "lint": "yarn run eslint --ext .js src test",
@@ -8,7 +8,8 @@
     "prod": "snowpack build",
     "test": "jest",
     "build": "pika build",
-    "pika:publish": "pika publish --no-tests --no-2fa"
+    "pika:publish": "pika publish --no-tests --no-2fa",
+    "version": "npm run build"
   },
   "keywords": [
     "stimulus",
