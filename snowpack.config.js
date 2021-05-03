@@ -1,14 +1,15 @@
-// Snowpack Configuration File
-// See all supported options: https://www.snowpack.dev/reference/configuration
-
-/** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
+  plugins: [
+    [
+      '@snowpack/plugin-babel',
+    ],
+  ],
   exclude: [
     'build/**',
-    'coverage/**',
-    'node_modules/**',
-    'pkg/**',
-    '.idea/**',
-    'LICENSE',
+    '**/coverage/**',
+    '**/node_modules/**',
+    '**/pkg/**',
+    '**/.idea/**',
+    '**/LICENSE',
   ],
 }
